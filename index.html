@@ -8,34 +8,16 @@
 </head>
 <body>
   
-  <article>
-    <h1>
-      zephir flex
-    </h1>
+  <div id="backgroundContainer">
+    <div id="backgroundLeft" class="title">
+      <div class="hiddenExtender"></div>
+    </div>
+    <div id="backgroundRight" class="title">
+      flex
+      <div class="hiddenExtender"></div>
+    </div>
+  </div>
 
-    <br>
-
-    <input type="range" id="weight" min="90" max="180" value="90">
-    <input type="range" id="flex" min="0" max="100" value="0">
-  </article>
-
-  <script>
-
-    const onSliderChange = () => {
-      const weight = document.getElementById('weight').value;
-      const flex = document.getElementById('flex').value;
-
-      const root = document.querySelector(':root');
-      root.style.setProperty('--font-weight', weight);
-      root.style.setProperty('--font-flex', flex);
-    };
-
-    const weightSlider = document.getElementById('weight');
-    const flexSlider = document.getElementById('flex');
-
-    weightSlider.addEventListener('input', onSliderChange);
-    flexSlider.addEventListener('input', onSliderChange);
-
-</script>
+  <script src="./index.js"></script>
 </body>
 </html>

@@ -13,26 +13,52 @@
 :root {
   --font-weight: 90;
   --font-flex: 0;
+
+  --color-lavender: #8e7dbe;
+  --color-pink: #d88c9a;
 }
 
 body {
   margin: 0;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
-article {
+#backgroundContainer {
+  display: flex;
+  flex-direction: row;
   width: 100%;
   height: 100%;
+}
+
+#backgroundLeft {
+  width: 100%;
+  background-color: var(--color-lavender);
+  
+}
+
+#backgroundRight {
+  width: 0%;
+  background-color: var(--color-pink);
+  overflow: hidden;
+}
+
+.hiddenExtender {
+  flex-grow: 0;
+  transition: flex-grow .3s cubic-bezier(0.04,0.83,0.42,0.99);
+}
+
+.title {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-}
-
-h1 {
-  font-size: 10em;
+  flex-direction: row;
+  transform: 'rotate(0deg)';
+  font-size: 15em;
+  color: white;
   font-family: 'Zephir Flex';
   font-weight: var(--font-weight);
   font-variation-settings: 'FLEX' var(--font-flex);
+  transition: width .3s cubic-bezier(0.04,0.83,0.42,0.99), font-weight .3s ease-out, font-variation-settings .3s ease-out, transform .3s ease-out;
 }
