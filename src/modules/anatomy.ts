@@ -5,9 +5,9 @@ import { prefersReducedMotion } from './reveal';
 
 // Approximate positions (% of the square stage) of each feature on the "n".
 const MARKERS = [
-  { left: 34, top: 19 }, // 1: stem top, curves left
-  { left: 30, top: 77 }, // 2: lower-left serif
-  { left: 69, top: 77 }, // 3: right-facing corner, softened
+  { left: 34, top: 16 }, // 1: stem top, curves left
+  { left: 15, top: 90 }, // 2: lower-left serif (pulled out from the foot)
+  { left: 85, top: 90 }, // 3: right-facing corner, softened (pulled out)
 ];
 
 export function initAnatomy(): void {
