@@ -56,7 +56,7 @@
 .control__sub { color: var(--ink-soft); text-transform: none; letter-spacing: 0.04em; }
 .control__hint { margin-top: 0.6rem; font-size: 0.75rem; color: var(--ink-soft); }
 
-// Range slider — minimal black & white, touch-friendly.
+// Range slider: minimal black & white, touch-friendly.
 input[type='range'] {
   -webkit-appearance: none;
   appearance: none;

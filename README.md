@@ -1,8 +1,8 @@
 # Zephir Flex
 
-A specimen site for **Zephir Flex** — a variable typeface built on a simple
-conceit: *what if the wind blew from right to left?* Slide the **flex** axis and
-the wind picks up — stem tops curve away, soft serifs stream off to the left,
+A specimen site for **Zephir Flex**, a variable typeface built on a simple
+conceit: *what if wind blows against the font?* Slide the **flex** axis and
+the wind picks up. Stem tops curve away, soft serifs stream off to the left,
 and right-facing corners round smooth. A second **weight** axis runs from a
 delicate hairline to a heavy black.
 
@@ -10,12 +10,12 @@ delicate hairline to a heavy black.
 
 ## What's on the page
 
-- **Hero** — the name assembles, then the wind morphs it from sans to serif.
-- **Concept** — the idea behind the typeface.
-- **Playground** — drag two sliders (weight + flex) on live, editable type, or jump to any named cut.
-- **The cuts** — all eight named instances set in the pangram.
-- **Anatomy** — the favourite letter `n`, with its three wind-shaped features.
-- **Specimen** — an editable type tester, the `a–z` grid, and text blocks at different settings.
+- **Hero**: the name assembles, then the wind morphs it from sans to serif.
+- **Concept**: the idea behind the typeface.
+- **Playground**: drag two sliders (weight + flex) on live, editable type, or jump to any named cut.
+- **The cuts**: all eight named instances set in the pangram.
+- **Anatomy**: the favourite letter `n`, with its three wind-shaped features.
+- **Specimen**: an editable type tester, the `a–z` grid, and text blocks at different settings.
 
 Only the lowercase alphabet is shown, since that's what the font draws.
 

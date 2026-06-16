@@ -4,7 +4,7 @@ import { ALPHABET, LOREM } from '../data/font';
 import { enforceLowercase } from './text';
 
 export function initSpecimen(): void {
-  // Editable tester — keep it lowercase.
+  // Editable tester: keep it lowercase.
   const input = document.querySelector<HTMLElement>('[data-specimen-input]');
   input?.addEventListener('input', () => enforceLowercase(input));
 
@@ -21,7 +21,7 @@ export function initSpecimen(): void {
     alphabet.appendChild(frag);
   }
 
-  // Lorem blocks — set axes from data attributes.
+  // Lorem blocks: set axes from data attributes.
   const blocks = document.querySelectorAll<HTMLElement>('[data-text-block]');
   blocks.forEach((block) => {
     const wght = block.dataset.wght ?? '90';

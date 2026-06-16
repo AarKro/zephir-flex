@@ -9,7 +9,7 @@ export function prefersReducedMotion(): boolean {
 /**
  * Observe every [data-reveal] element and add `.is-in` when it scrolls into
  * view. Elements may opt into a one-shot callback via the `onReveal` map
- * (keyed by a `data-reveal-id`) — used by sections that animate axes on entry.
+ * (keyed by a `data-reveal-id`), used by sections that animate axes on entry.
  */
 export function initReveal(onReveal: Record<string, (el: HTMLElement) => void> = {}): void {
   const targets = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));

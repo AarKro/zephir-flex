@@ -1,5 +1,5 @@
 // Hero opening timeline: letters of "zephir flex" assemble from the right,
-// then the wind passes and the word morphs from calm sans to the serif form.
+// then the wind strengthens and the word morphs into its full serif form.
 import { prefersReducedMotion } from './reveal';
 
 export function initHero(): void {
@@ -7,7 +7,7 @@ export function initHero(): void {
   if (!hero) return;
 
   const word = hero.querySelector<HTMLElement>('[data-hero-word]');
-  const tagline = hero.querySelector<HTMLElement>('[data-hero-tagline]');
+  const taglines = Array.from(hero.querySelectorAll<HTMLElement>('[data-hero-tagline]'));
   const scroll = hero.querySelector<HTMLElement>('[data-hero-scroll]');
   const lines = Array.from(hero.querySelectorAll<HTMLElement>('[data-hero-line]'));
 
@@ -25,14 +25,20 @@ export function initHero(): void {
     }
   }
 
-  const reveal = () => {
-    chars.forEach((c) => c.classList.add('is-in'));
-    tagline?.classList.add('is-in');
+  const showSupporting = () => {
+    taglines.forEach((t) => t.classList.add('is-in'));
     scroll?.classList.add('is-in');
   };
 
+  const reveal = () => {
+    chars.forEach((c) => c.classList.add('is-in'));
+    showSupporting();
+  };
+
   const blow = () => {
-    // The wind arrives: settle into the serif "Regular" form (FLEX 100).
+    // The wind builds to its full serif "Regular" form (FLEX 100). The word
+    // starts at flex 30 (see _hero.scss) so the morph never shows the
+    // unfinished flex-0 terminals.
     word?.style.setProperty('--hero-flex', '100');
   };
 
@@ -48,9 +54,6 @@ export function initHero(): void {
     window.setTimeout(() => c.classList.add('is-in'), 300 + i * STEP);
   });
   const lettersDone = 300 + chars.length * STEP;
-  window.setTimeout(() => {
-    tagline?.classList.add('is-in');
-    scroll?.classList.add('is-in');
-  }, lettersDone + 150);
+  window.setTimeout(showSupporting, lettersDone + 150);
   window.setTimeout(blow, lettersDone + 650);
 }
