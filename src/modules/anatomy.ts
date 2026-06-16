@@ -81,7 +81,7 @@ export function initAnatomy(): void {
 /** Smoothly ramp the slider to a target value, calling apply() each frame. */
 function animateTo(slider: HTMLInputElement, target: number, apply: () => void): void {
   const start = Number(slider.value);
-  const duration = 1400;
+  const duration = 2500;
   const t0 = performance.now();
   const tick = (now: number) => {
     const p = Math.min(1, (now - t0) / duration);
