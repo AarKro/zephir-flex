@@ -1,0 +1,35 @@
+// Design tokens: breakpoints, easing, layout rhythm.
+// This file emits NO CSS — only Sass variables and mixins. Safe to @use anywhere.
+
+// --- Breakpoints (mobile-first; min-width) ---
+$bp-sm: 480px; // large phone
+$bp-md: 768px; // tablet
+$bp-lg: 1024px; // small laptop
+$bp-xl: 1440px; // desktop
+
+@mixin respond-to($bp) {
+  @if $bp == sm {
+    @media (min-width: $bp-sm) { @content; }
+  } @else if $bp == md {
+    @media (min-width: $bp-md) { @content; }
+  } @else if $bp == lg {
+    @media (min-width: $bp-lg) { @content; }
+  } @else if $bp == xl {
+    @media (min-width: $bp-xl) { @content; }
+  } @else {
+    @error "Unknown breakpoint: #{$bp}";
+  }
+}
+
+// Honour reduced-motion in one place.
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}
+
+// --- Motion ---
+$ease-wind: cubic-bezier(0.04, 0.83, 0.42, 0.99); // borrowed from the original skeleton
+$ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+// --- Layout ---
+$content-max: 1200px;
+$gutter: clamp(1.25rem, 5vw, 4rem);

@@ -1,0 +1,46 @@
+@use 'tokens' as *;
+
+// Vite rewrites this relative url() to the hashed, base-prefixed asset.
+@font-face {
+  font-family: 'Zephir Flex';
+  src: url('../assets/fonts/ZephirFlexVF.ttf') format('truetype');
+  font-weight: 90 180;
+  font-display: swap;
+}
+
+// Display font: the star. UI font: neutral system sans for labels/controls.
+$display: 'Zephir Flex', Georgia, serif;
+$ui: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+body {
+  font-family: $ui;
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  line-height: 1.6;
+}
+
+// Anything that should render IN the showcased font.
+.display {
+  font-family: $display;
+  font-variation-settings: 'wght' var(--wght), 'FLEX' var(--flex);
+}
+
+// Shared section scaffolding.
+.section__kicker {
+  font-family: $ui;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 1.25rem;
+}
+
+.section__title {
+  font-family: $display;
+  font-variation-settings: 'wght' 140, 'FLEX' 100;
+  font-weight: 140;
+  font-size: clamp(2rem, 1.2rem + 5vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}

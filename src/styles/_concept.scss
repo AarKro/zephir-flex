@@ -1,0 +1,35 @@
+@use 'tokens' as *;
+
+.concept__lead {
+  margin: 0 0 clamp(2rem, 6vw, 4rem);
+}
+
+.concept__demo {
+  display: inline-block;
+  font-family: 'Zephir Flex', Georgia, serif;
+  font-size: clamp(2.5rem, 1rem + 9vw, 7rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  // Sweeps from calm sans -> serif "wind" form when the line reveals.
+  font-variation-settings: 'wght' 110, 'FLEX' var(--flex-demo, 0);
+  transition: font-variation-settings 1.4s $ease-wind;
+}
+
+.concept__lead.is-in .concept__demo {
+  --flex-demo: 100;
+}
+
+.concept__body {
+  max-width: 46ch;
+  display: grid;
+  gap: 1.25rem;
+  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.2rem);
+  color: var(--ink);
+
+  em { font-style: italic; color: var(--ink-soft); }
+}
+
+@include reduced-motion {
+  .concept__demo { transition: none; }
+  .concept__lead.is-in .concept__demo { --flex-demo: 100; }
+}

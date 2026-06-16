@@ -1,0 +1,64 @@
+@use 'tokens' as *;
+
+.cuts__list {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+.cut-row {
+  display: grid;
+  gap: 0.5rem 2rem;
+  padding-bottom: clamp(1.5rem, 4vw, 2.75rem);
+  border-bottom: 1px solid var(--hair);
+
+  @include respond-to(md) {
+    grid-template-columns: 9rem 1fr;
+    align-items: baseline;
+  }
+}
+.cut-row:last-child { border-bottom: 0; }
+
+.cut-row__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.cut-row__name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.cut-row__coords {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+
+.cut-row__text {
+  font-family: 'Zephir Flex', Georgia, serif;
+  font-size: clamp(1.6rem, 0.6rem + 5vw, 3.4rem);
+  line-height: 1.08;
+  min-width: 0;
+  word-break: break-word;
+  // Static weight per row; FLEX sweeps from 0 to its target when the row reveals.
+  font-variation-settings: 'wght' var(--row-wght), 'FLEX' var(--row-flex, 0);
+  transition: font-variation-settings 1.2s $ease-wind;
+}
+
+.cut-row.is-in .cut-row__text {
+  --row-flex: var(--row-flex-target);
+}
+
+// Hover gives the whole row a gentle extra gust of weight.
+@media (hover: hover) {
+  .cut-row.is-in:hover .cut-row__text {
+    font-variation-settings: 'wght' calc(var(--row-wght) + 10), 'FLEX' var(--row-flex-target);
+  }
+}
+
+@include reduced-motion {
+  .cut-row__text { transition: none; }
+}

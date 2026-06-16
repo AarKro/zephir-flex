@@ -1,0 +1,43 @@
+@use 'tokens' as *;
+
+// The gray "wind swirl" motif from the spec sheets: a spiral curl with a
+// trailing line. Reused decoratively. Injected by wind.ts.
+.swirl {
+  display: block;
+  color: var(--wind);
+  pointer-events: none;
+  user-select: none;
+
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  path { fill: none; stroke: currentColor; stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+}
+
+// Hero windfield: a few swirls drifting across, right → left (the wind).
+.hero__windfield {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hero__windfield .swirl {
+  position: absolute;
+  width: clamp(90px, 16vw, 240px);
+  opacity: 0;
+}
+
+// Each swirl drifts in from the right. Positions/delays set via inline style.
+.hero__windfield .swirl.is-blowing {
+  animation: swirl-drift 9s linear infinite;
+}
+
+@keyframes swirl-drift {
+  0%   { transform: translateX(40vw); opacity: 0; }
+  12%  { opacity: 0.9; }
+  85%  { opacity: 0.9; }
+  100% { transform: translateX(-60vw); opacity: 0; }
+}
+
+@include reduced-motion {
+  .hero__windfield .swirl.is-blowing { animation: none; opacity: 0.5; transform: none; }
+}
