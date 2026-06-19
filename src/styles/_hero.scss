@@ -20,10 +20,7 @@
   font-family: 'Zephir Flex', Georgia, serif;
   font-size: clamp(3.5rem, 18vw, 13rem);
   line-height: 0.97;
-  // Hero word morphs via its own properties, animated by hero.ts. It starts
-  // with the wind already lightly engaged (flex 30): the font's terminals look
-  // unfinished at flex 0, so this keeps the x reading cleanly from frame one.
-  font-variation-settings: 'wght' var(--hero-wght, 90), 'FLEX' var(--hero-flex, 30);
+  font-variation-settings: 'wght' var(--hero-wght, 90), 'FLEX' var(--hero-flex, 0);
   transition: font-variation-settings 1.1s $ease-wind;
 }
 
