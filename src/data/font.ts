@@ -41,10 +41,10 @@ export const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
 // Lowercase-only lorem, since the font only ships lowercase glyphs we want to show.
 export const LOREM =
-  'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod ' +
-  'tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim ' +
-  'veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea ' +
-  'commodo consequat.';
+  'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod ' +
+  'tempor incididunt ut labore et dolore magna aliqua ut enim ad minim ' +
+  'veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea ' +
+  'commodo consequat';
 
 /** Build a `font-variation-settings` value string from axis coordinates. */
 export function fvs(wght: number, flex: number): string {
