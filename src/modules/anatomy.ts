@@ -3,11 +3,15 @@
 // the feature notes (hovering either highlights the pair).
 import { prefersReducedMotion } from './reveal';
 
-// Approximate positions (% of the square stage) of each feature on the "n".
+// Feature positions on the glyph itself, derived from the font's outlines:
+// units/em = 1000, advance of "n" = 542, typo ascender 800 (USE_TYPO_METRICS)
+// puts the baseline at 80% of the 1em line box. left/top are % of the glyph's
+// box; ring is the highlighted area's diameter in em of the glyph size; angle
+// points the numbered badge away from the letter (0 = right, clockwise).
 const MARKERS = [
-  { left: 34, top: 16 }, // 1: stem top, curves left
-  { left: 15, top: 90 }, // 2: lower-left serif (pulled out from the foot)
-  { left: 85, top: 90 }, // 3: right-facing corner, softened (pulled out)
+  { left: 21.0, top: 33.8, ring: 0.19, angle: -140 }, // 1: stem top, curves left
+  { left: 9.8, top: 72.8, ring: 0.17, angle: 140 }, // 2: left foot serif, points left
+  { left: 91.3, top: 79.0, ring: 0.11, angle: 35 }, // 3: right-facing corner, softened
 ];
 
 export function initAnatomy(): void {
@@ -27,12 +31,18 @@ export function initAnatomy(): void {
   const markers = MARKERS.map((pos, i) => {
     const m = document.createElement('span');
     m.className = 'anatomy__marker';
-    m.dataset.marker = String(i);
     m.style.left = `${pos.left}%`;
     m.style.top = `${pos.top}%`;
-    m.textContent = String(i + 1);
-    m.setAttribute('aria-hidden', 'true');
-    stage.appendChild(m);
+    m.style.setProperty('--ring', `${pos.ring}em`);
+    m.style.setProperty('--angle', `${pos.angle}deg`);
+    const arm = document.createElement('span');
+    arm.className = 'anatomy__arm';
+    const badge = document.createElement('span');
+    badge.className = 'anatomy__badge';
+    badge.textContent = String(i + 1);
+    arm.appendChild(badge);
+    m.appendChild(arm);
+    glyph.appendChild(m);
     return m;
   });
 

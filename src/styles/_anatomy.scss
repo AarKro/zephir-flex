@@ -28,6 +28,7 @@
 }
 
 .anatomy__glyph {
+  position: relative; // markers are placed in % of the glyph's own box
   font-family: 'Zephir Flex', Georgia, serif;
   font-size: min(78vw, 26rem);
   line-height: 1;
@@ -36,31 +37,77 @@
   transition: font-variation-settings 0.5s $ease-wind;
 }
 
+// Each marker is a dashed ring sitting exactly on the affected part of the
+// letter (sized via --ring in em so it scales with the glyph), plus a numbered
+// badge held off the ring's edge by a short leader line, angled away from the
+// letter via --angle.
 .anatomy__marker {
   position: absolute;
-  width: 2.6rem;
-  height: 2.6rem;
+  width: var(--ring);
+  height: var(--ring);
+  transform: translate(-50%, -50%);
+  border: 1.5px dashed var(--wind);
+  border-radius: 50%;
+  cursor: default;
+  transition: border-color 0.2s $ease-out;
+
+  // Leader line from the ring's edge out to the badge.
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(50% - 0.75px);
+    left: 50%;
+    width: 0.55rem;
+    height: 1.5px;
+    background: var(--wind);
+    transform-origin: left center;
+    transform: rotate(var(--angle)) translateX(calc(var(--ring) / 2));
+    transition: background 0.2s $ease-out;
+  }
+}
+
+// Invisible spoke from the ring's centre out past the leader line. It keeps
+// the glyph's font-size, so the em-based --ring resolves correctly here (it
+// wouldn't on the badge, whose font-size is small).
+.anatomy__arm {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--ring) / 2 + 0.55rem + 0.8rem);
+  height: 0;
+  transform-origin: left center;
+  transform: rotate(var(--angle));
+}
+
+.anatomy__badge {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: -0.8rem; // center the badge on the arm's tip
   display: grid;
   place-items: center;
-  // Transparent body with a grey "wind" border so the markers float over the
-  // letter without obscuring it.
-  border: 2px solid var(--wind);
+  border: 1.5px solid var(--ink);
   border-radius: 50%;
-  background: transparent;
-  color: var(--ink-soft);
-  font-size: 0.95rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 0.78rem;
   font-weight: 700;
   font-family: system-ui, sans-serif;
-  transform: translate(-50%, -50%);
-  transition: background 0.2s $ease-out, color 0.2s $ease-out,
-    border-color 0.2s $ease-out, transform 0.2s $ease-out;
+  transform: rotate(calc(-1 * var(--angle))); // keep the number upright
+  transition: background 0.2s $ease-out, color 0.2s $ease-out;
 }
 
 .anatomy__marker.is-active {
-  background: var(--ink);
   border-color: var(--ink);
-  color: var(--paper);
-  transform: translate(-50%, -50%) scale(1.15);
+
+  &::before { background: var(--ink); }
+
+  .anatomy__badge {
+    background: var(--ink);
+    color: var(--paper);
+  }
 }
 
 .anatomy__controls { min-width: 0; }
